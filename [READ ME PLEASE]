@@ -1,0 +1,27 @@
+Hey I have trouble with a plugin im doing and I was wondering how I can adding a cool down. My plugin makes it so that when you right
+click a sword it will shoot a fireball now I want it to have a 5 second cooldown because you can spawm it. Please I need help in figuring
+this out. Here is what I have so far.
+
+@EventHandler(priority = EventPriority.HIGH) // Added event priority and
+	// event
+	public void onPlayerThrowingEvent(PlayerInteractEvent event) { // added the
+		// actual
+		// event
+		if (!event.getAction().equals(Action.RIGHT_CLICK_AIR) == !event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+			return;
+		} else {
+			ItemStack item = event.getPlayer().getItemInHand();
+			if (event.getAction().equals(Action.RIGHT_CLICK_AIR)
+					|| event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+				if (item.getType() != Material.DIAMOND_SWORD) {
+					return;
+				} else {
+					if (item.getType() == Material.DIAMOND_SWORD) {
+						event.getPlayer().launchProjectile(SmallFireball.class)
+								.setVelocity(event.getPlayer().getLocation().getDirection().multiply(1));
+					}
+					
+				}
+			}
+		}
+	}
